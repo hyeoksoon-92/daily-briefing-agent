@@ -15,7 +15,7 @@ def get_github_trending(limit: int = 5) -> str:
     headers = {"Accept": "application/vnd.github+json"}
     response = httpx.get(url, params=params, headers=headers, timeout=10)
     response.raise_for_status()
-    items = response.json()["items"]
+    items = response.json().get("items", [])[:limit]
 
     lines = []
     for i, repo in enumerate(items, 1):

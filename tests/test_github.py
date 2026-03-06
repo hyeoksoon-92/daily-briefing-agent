@@ -43,4 +43,5 @@ def test_get_github_trending_handles_missing_fields():
     result = get_github_trending()
     assert "owner/minimal" in result
     assert "설명 없음" in result
+    assert "N/A" in result
     assert isinstance(result, str)
