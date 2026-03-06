@@ -9,10 +9,14 @@ RSS_FEEDS = [
 
 
 def get_news(limit: int = 10) -> str:
+    per_feed = max(1, limit)
     entries = []
     for url in RSS_FEEDS:
-        feed = feedparser.parse(url)
-        entries.extend(feed.entries[:5])
+        try:
+            feed = feedparser.parse(url)
+            entries.extend(feed.entries[:per_feed])
+        except Exception:
+            continue
 
     seen = set()
     lines = []
