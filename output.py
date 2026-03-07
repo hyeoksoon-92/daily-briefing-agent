@@ -10,7 +10,7 @@ console = Console()
 
 
 def save_briefing(content: str) -> Path:
-    BRIEFINGS_DIR.mkdir(exist_ok=True)
+    BRIEFINGS_DIR.mkdir(parents=True, exist_ok=True)
     filename = f"briefing-{date.today().isoformat()}.md"
     filepath = BRIEFINGS_DIR / filename
     filepath.write_text(content, encoding="utf-8")
