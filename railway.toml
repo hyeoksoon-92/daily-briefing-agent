@@ -1,0 +1,11 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "uvicorn api_app:app --host 0.0.0.0 --port $PORT"
+healthcheckPath = "/briefings/latest"
+restartPolicyType = "on_failure"
+
+[[deploy.cronJobs]]
+schedule = "0 8 * * *"
+command = ".venv/bin/python main.py"
